@@ -261,19 +261,26 @@ def introscreen():
                     return True
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE or event.key == pygame.K_UP:
-                        gameStart = True
+                        temp_dino.isJumping = True
+                        temp_dino.isBlinking = False
+                        temp_dino.movement[1] = -1*temp_dino.jumpSpeed
+                        #gameStart = True
 
         temp_dino.update()
 
         if pygame.display.get_surface() != None:
             screen.fill(background_col)
-            screen.blit(logo,logo_rect)
             screen.blit(temp_ground[0],temp_ground_rect)
-            screen.blit(callout,callout_rect)
+            if temp_dino.isBlinking:
+                screen.blit(logo,logo_rect)
+                screen.blit(callout,callout_rect)
             temp_dino.draw()
 
             pygame.display.update()
+
         clock.tick(FPS)
+        if temp_dino.isJumping == False and temp_dino.isBlinking == False:
+            gameStart = True
 
 def gameplay():#playerDino):
     gamespeed = 4
