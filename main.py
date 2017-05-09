@@ -174,7 +174,7 @@ class Dino():
         self.rect = self.rect.move(self.movement)
         self.checkbounds()
 
-        if not self.isDead and self.counter % 7 == 6:
+        if not self.isDead and self.counter % 7 == 6 and self.isBlinking == False:
             self.score += 1
             if self.score % 100 == 0 and self.score != 0:
                 if pygame.mixer.get_init() != None:
