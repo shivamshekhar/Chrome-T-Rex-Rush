@@ -1,6 +1,7 @@
 __author__ = "Shivam Shekhar"
 
 import os
+import sys
 import pygame
 import random
 from pygame import *
@@ -20,6 +21,10 @@ high_score = 0
 screen = pygame.display.set_mode(scr_size)
 clock = pygame.time.Clock()
 pygame.display.set_caption("T-Rex Rush")
+
+jump_sound = pygame.mixer.Sound('sprites/jump.wav')
+die_sound = pygame.mixer.Sound('sprites/die.wav')
+checkPoint_sound = pygame.mixer.Sound('sprites/checkPoint.wav')
 
 def load_image(
     name,
@@ -123,7 +128,6 @@ class Dino():
         self.isBlinking = False
         self.movement = [0,0]
         self.jumpSpeed = 11.5
-        self.checkPoint_sound = pygame.mixer.Sound('sprites/checkPoint.wav')
 
         self.stand_pos_width = self.rect.width
         self.duck_pos_width = self.rect1.width
@@ -173,7 +177,8 @@ class Dino():
         if not self.isDead and self.counter % 7 == 6:
             self.score += 1
             if self.score % 100 == 0 and self.score != 0:
-                self.checkPoint_sound.play()
+                if pygame.mixer.get_init() != None:
+                    checkPoint_sound.play()
 
         self.counter = (self.counter + 1)
 
@@ -366,9 +371,6 @@ def gameplay():
     HI_rect.top = height*0.1
     HI_rect.left = width*0.73
 
-    jump_sound = pygame.mixer.Sound('sprites/jump.wav')
-    die_sound = pygame.mixer.Sound('sprites/die.wav')
-
     while not gameQuit:
         while startMenu:
             pass
@@ -387,7 +389,8 @@ def gameplay():
                         if event.key == pygame.K_SPACE:
                             if playerDino.rect.bottom == int(0.98*height):
                                 playerDino.isJumping = True
-                                jump_sound.play()
+                                if pygame.mixer.get_init() != None:
+                                    jump_sound.play()
                                 playerDino.movement[1] = -1*playerDino.jumpSpeed
 
                         if event.key == pygame.K_DOWN:
@@ -401,13 +404,15 @@ def gameplay():
                 c.movement[0] = -1*gamespeed
                 if pygame.sprite.collide_mask(playerDino,c):
                     playerDino.isDead = True
-                    die_sound.play()
+                    if pygame.mixer.get_init() != None:
+                        die_sound.play()
 
             for p in pteras:
                 p.movement[0] = -1*gamespeed
                 if pygame.sprite.collide_mask(playerDino,p):
                     playerDino.isDead = True
-                    die_sound.play()
+                    if pygame.mixer.get_init() != None:
+                        die_sound.play()
 
             if len(cacti) < 2:
                 if len(cacti) == 0:
@@ -492,7 +497,6 @@ def gameplay():
                     screen.blit(HI_image,HI_rect)
                 pygame.display.update()
             clock.tick(FPS)
-
 
     pygame.quit()
     quit()
