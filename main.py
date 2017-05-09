@@ -246,7 +246,7 @@ class Ground():
 class Cloud(pygame.sprite.Sprite):
     def __init__(self,x,y):
         pygame.sprite.Sprite.__init__(self,self.containers)
-        self.image,self.rect = load_image('cloud.png',90*30/42,30,-1)
+        self.image,self.rect = load_image('cloud.png',int(90*30/42),30,-1)
         self.speed = 1
         self.rect.left = x
         self.rect.top = y
@@ -305,7 +305,7 @@ def introscreen():
     logo_rect.centery = height*0.6
     while not gameStart:
         if pygame.display.get_surface() == None:
-            print "Couldn't load display surface"
+            print("Couldn't load display surface")
             return True
         else:
             for event in pygame.event.get():
@@ -374,7 +374,7 @@ def gameplay():
             pass
         while not gameOver:
             if pygame.display.get_surface() == None:
-                print "Couldn't load display surface"
+                print("Couldn't load display surface")
                 gameQuit = True
                 gameOver = True
             else:
@@ -468,7 +468,7 @@ def gameplay():
 
         while gameOver:
             if pygame.display.get_surface() == None:
-                print "Couldn't load display surface"
+                print("Couldn't load display surface")
                 gameQuit = True
                 gameOver = False
             else:
