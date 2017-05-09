@@ -239,24 +239,40 @@ def introscreen():
     temp_dino = Dino(44,47)
     temp_dino.isBlinking = True
     gameStart = False
+
+    callout,callout_rect = load_image('call_out.png',196,45,-1)
+    callout_rect.left = width*0.05
+    callout_rect.top = height*0.4
+
     temp_ground,temp_ground_rect = load_sprite_sheet('ground.png',15,1,-1,-1,-1)
     temp_ground_rect.left = width/20
     temp_ground_rect.bottom = height
+
+    logo,logo_rect = load_image('logo.png',360,60,-1)
+    logo_rect.centerx = width*0.68
+    logo_rect.centery = height*0.6
     while not gameStart:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                quit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE or event.key == pygame.K_UP:
-                    gameStart = True
+        if pygame.display.get_surface() == None:
+            print "Couldn't load display surface"
+            return True
+        else:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    return True
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE or event.key == pygame.K_UP:
+                        gameStart = True
 
         temp_dino.update()
 
-        screen.fill(background_col)
-        screen.blit(temp_ground[0],temp_ground_rect)
-        temp_dino.draw()
+        if pygame.display.get_surface() != None:
+            screen.fill(background_col)
+            screen.blit(logo,logo_rect)
+            screen.blit(temp_ground[0],temp_ground_rect)
+            screen.blit(callout,callout_rect)
+            temp_dino.draw()
 
-        pygame.display.update()
+            pygame.display.update()
         clock.tick(FPS)
 
 def gameplay():#playerDino):
@@ -367,7 +383,7 @@ def gameplay():#playerDino):
                 gamespeed += 1
 
             counter = (counter + 1)#%100000000000
-            print len(last_obstacle)
+            #print len(last_obstacle)
 
         if gameQuit:
             break
@@ -403,7 +419,8 @@ def gameplay():#playerDino):
     quit()
 
 def main():
-    introscreen()
-    gameplay()
+    isGameQuit = introscreen()
+    if not isGameQuit:
+        gameplay()
 
 main()

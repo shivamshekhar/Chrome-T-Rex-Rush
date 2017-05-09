@@ -29,7 +29,10 @@ Shivam Shekhar
 Email: shivam.shekhar.ece14@itbhu.ac.in   
 
 #### Credits:
-* Sprites : 
+* Sprites : https://chromedino.com/assets/offline-sprite-2x-black.png
+* Logo : https://textcraft.net/
+* Speech Bubble : http://pixelspeechbubble.com/
 
 #### References:
 * http://www.pygame.org/docs
+* https://github.com/wayou/t-rex-runner
