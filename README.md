@@ -32,6 +32,7 @@ Email: shivam.shekhar.ece14@itbhu.ac.in
 * Sprites : https://chromedino.com/assets/offline-sprite-2x-black.png
 * Logo : https://textcraft.net/
 * Speech Bubble : http://pixelspeechbubble.com/
+* Sounds : https://github.com/vicboma1/T-Rex-Game/tree/master/Unity/Sounds
 
 #### References:
 * http://www.pygame.org/docs
