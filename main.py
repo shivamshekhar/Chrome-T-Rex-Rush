@@ -79,11 +79,17 @@ def load_sprite_sheet(
 
     return sprites,sprite_rect
 
-def disp_gameOver_msg(retbutton_image):
+def disp_gameOver_msg(retbutton_image,gameover_image):
     retbutton_rect = retbutton_image.get_rect()
     retbutton_rect.centerx = width / 2
-    retbutton_rect.top = height / 2
+    retbutton_rect.top = height*0.52
+
+    gameover_rect = gameover_image.get_rect()
+    gameover_rect.centerx = width / 2
+    gameover_rect.centery = height*0.35
+
     screen.blit(retbutton_image, retbutton_rect)
+    screen.blit(gameover_image, gameover_rect)
 
 class Dino():
     def __init__(self,sizex=-1,sizey=-1):
@@ -248,8 +254,8 @@ def introscreen():
     temp_ground_rect.left = width/20
     temp_ground_rect.bottom = height
 
-    logo,logo_rect = load_image('logo.png',360,60,-1)
-    logo_rect.centerx = width*0.68
+    logo,logo_rect = load_image('logo.png',240,40,-1)
+    logo_rect.centerx = width*0.6
     logo_rect.centery = height*0.6
     while not gameStart:
         if pygame.display.get_surface() == None:
@@ -301,6 +307,7 @@ def gameplay():#playerDino):
     Cloud.containers = clouds
 
     retbutton_image,retbutton_rect = load_image('replay_button.png',35,31,-1)
+    gameover_image,gameover_rect = load_image('game_over.png',190,11,-1)
     while not gameQuit:
         while startMenu:
             pass
@@ -385,7 +392,7 @@ def gameplay():#playerDino):
             if playerDino.isDead:
                 gameOver = True
 
-            if counter%2000 == 1999:
+            if counter%1500 == 1499:
                 new_ground.speed -= 1
                 gamespeed += 1
 
@@ -415,7 +422,7 @@ def gameplay():#playerDino):
                             gameplay()
             #screen.blit(retbutton_image,retbutton_rect)
             if pygame.display.get_surface() != None:
-                disp_gameOver_msg(retbutton_image)
+                disp_gameOver_msg(retbutton_image,gameover_image)
                 pygame.display.update()
             clock.tick(FPS)
 
