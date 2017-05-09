@@ -97,6 +97,7 @@ class Dino():
         self.isJumping = False
         self.isDead = False
         self.isDucking = False
+        self.isBlinking = False
         self.movement = [0,0]
         self.jumpSpeed = 11.5
 
@@ -117,6 +118,14 @@ class Dino():
 
         if self.isJumping:
             self.index = 0
+        elif self.isBlinking:
+            if self.index == 0:
+                if self.counter % 400 == 399:
+                    self.index = (self.index + 1)%2
+            else:
+                if self.counter % 20 == 19:
+                    self.index = (self.index + 1)%2
+
         elif self.isDucking:
             if self.counter % 5 == 0:
                 self.index = (self.index + 1)%2
@@ -225,7 +234,32 @@ class Cloud(pygame.sprite.Sprite):
             self.kill()
 
 
-def main():
+def introscreen():
+    #playerDino = Dino(44,47)
+    temp_dino = Dino(44,47)
+    temp_dino.isBlinking = True
+    gameStart = False
+    temp_ground,temp_ground_rect = load_sprite_sheet('ground.png',15,1,-1,-1,-1)
+    temp_ground_rect.left = width/20
+    temp_ground_rect.bottom = height
+    while not gameStart:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                quit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE or event.key == pygame.K_UP:
+                    gameStart = True
+
+        temp_dino.update()
+
+        screen.fill(background_col)
+        screen.blit(temp_ground[0],temp_ground_rect)
+        temp_dino.draw()
+
+        pygame.display.update()
+        clock.tick(FPS)
+
+def gameplay():#playerDino):
     gamespeed = 4
     startMenu = False #True
     gameOver = False
@@ -355,7 +389,7 @@ def main():
 
                         if event.key == pygame.K_RETURN or event.key == pygame.K_SPACE:
                             gameOver = False
-                            main()
+                            gameplay()
             #screen.blit(retbutton_image,retbutton_rect)
             if pygame.display.get_surface() != None:
                 disp_gameOver_msg(retbutton_image)
@@ -367,5 +401,9 @@ def main():
 
     pygame.quit()
     quit()
+
+def main():
+    introscreen()
+    gameplay()
 
 main()
