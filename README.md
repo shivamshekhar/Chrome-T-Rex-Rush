@@ -2,6 +2,8 @@
 
 ![](https://github.com/shivamshekhar/Chrome-T-Rex-Rush/raw/master/screenshot.png)
 
+![](https://github.com/shivamshekhar/Chrome-T-Rex-Rush/raw/master/screenshot.gif)
+
 ### Description:
 A recreated version of the famous Chrome T-Rex in Python 
 
