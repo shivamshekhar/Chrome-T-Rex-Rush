@@ -339,6 +339,7 @@ def introscreen():
             gameStart = True
 
 def gameplay():
+    global high_score
     gamespeed = 4
     startMenu = False
     gameOver = False
@@ -459,7 +460,6 @@ def gameplay():
             if playerDino.isDead:
                 gameOver = True
                 if playerDino.score > high_score:
-                    global high_score
                     high_score = playerDino.score
 
             if counter%700 == 699:
