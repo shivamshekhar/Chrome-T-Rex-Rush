@@ -6,6 +6,7 @@ import pygame
 import random
 from pygame import *
 
+pygame.mixer.pre_init(44100, -16, 2, 2048) # fix audio delay 
 pygame.init()
 
 scr_size = (width,height) = (600,150)
