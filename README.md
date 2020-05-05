@@ -1,4 +1,9 @@
-### DISCLAIMER : This project is no longer under maintainence, hence I won't be able to accept any new features or pull requests. You are, however, welcome to fork this project and use it as your own.
+![No longer maintained](https://img.shields.io/badge/Maintenance-OFF-red.svg)
+### [DEPRECATED] This repository is no longer maintained
+> While this project is fully functional, I won't be able to accept any new pull requests or features. You are still welcome to explore, learn, and use the code provided here.
+>
+> Feel free to fork this project and use it as your own, and do let me know via email (mentioned below) if you develop something new and innovative using this repository. Cheers! :)
+> ~Shivam
 
 # T-Rex Rush 
 
