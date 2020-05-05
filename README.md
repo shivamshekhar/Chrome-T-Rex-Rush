@@ -1,3 +1,5 @@
+### DISCLAIMER : This project is no longer under maintainence, hence I won't be able to accept any new features or pull requests. You are, however, welcome to fork this project and use it as your own.
+
 # T-Rex Rush 
 
 ![](https://github.com/shivamshekhar/Chrome-T-Rex-Rush/raw/master/screenshot.png)
@@ -28,7 +30,7 @@ To run this game:
 
 ### Developed by: 
 Shivam Shekhar  
-Email: shivam.shekhar.ece14@itbhu.ac.in   
+Email: shivamshekhar299@gmail.com   
 
 #### Credits:
 * Sprites : https://chromedino.com/assets/offline-sprite-2x-black.png
